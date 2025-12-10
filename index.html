@@ -32,7 +32,7 @@
     </div>
 
     <script>
-        // --- FUNCTION 1: SMART UPLOAD LOGIC ---
+     
         async function checkAndUpload() {
             const fileInput = document.getElementById('fileInput');
             const file = fileInput.files[0];
@@ -43,17 +43,17 @@
                 return;
             }
 
-            // Step A: Ask Server "Do you have this file?"
+            
             try {
                 const checkResponse = await fetch(`http://localhost:3000/api/check/${file.name}`);
                 const data = await checkResponse.json();
 
                 if (data.exists) {
-                    // Step B: File exists. Ask user what to do.
+                    
                     const userChoice = confirm(`The file "${file.name}" already exists on the server.\n\nPress OK to OVERWRITE it.\nPress CANCEL to VIEW the existing one.`);
                     
                     if (userChoice === true) {
-                        // User clicked OK -> Overwrite
+                   
                         status.innerText = "Overwriting file...";
                         performUpload(file);
                     } else {
